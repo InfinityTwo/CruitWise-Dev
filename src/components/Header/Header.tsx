@@ -1,5 +1,7 @@
 import "./Header.scss";
 
+import React from "react";
+
 import { ReactComponent as HomeSVG } from "../../assets/home.svg";
 // import { ReactComponent as PublishSVG } from "../../assets/publish.svg";
 import { ReactComponent as SettingSVG } from "../../assets/setting.svg";
@@ -18,7 +20,7 @@ export const Header = ({ linkArray, activeTab }: { linkArray: string[]; activeTa
   return (
     <div className="nav-bar">
       <div className="nav-bar-logo">
-        Cruit<span>Wise</span>
+        cruit<span>wise</span>
       </div>
 
       <div className="tool-kit-title">
