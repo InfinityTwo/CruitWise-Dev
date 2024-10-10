@@ -1,0 +1,51 @@
+.progress-bar-wrapper {
+  position: absolute;
+  width: fit-content;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 2.5em;
+}
+
+.progress-bar-component {
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 3em;
+  font-weight: bold;
+  justify-content: center;
+  text-align: center;
+  background-color: #ffbd5955;
+  border-radius: 20px;
+  text-wrap: nowrap;
+  overflow: hidden;
+  width: 60vw;
+  margin-left: 20vw;
+  min-width: fit-content;
+  animation: 0.75s slidein backwards ease;
+}
+
+.progress-bar-actual {
+  border-radius: 20px;
+  background-color: #ffbd59;
+  height: 20px;
+  width: 20px;
+  margin: none;
+  transition: 0.5s ease;
+}
+
+.progress-bar-pecent {
+  margin: 0 0 0 20px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+}
+
+@keyframes slidein {
+  0% {
+    width: 0vw;
+    margin-left: 20vw;
+  }
+  100% {
+    width: 60vw;
+    margin-left: 20vw;
+  }
+}

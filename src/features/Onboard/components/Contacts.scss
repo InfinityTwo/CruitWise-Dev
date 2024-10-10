@@ -1,0 +1,79 @@
+.contacts-component {
+  * {
+    font-size: 0.75em;
+    font-family: "Nunito", sans-serif;
+  }
+}
+
+.contacts-header {
+  margin: 1.5em;
+  font-size: 2.25em;
+  margin-bottom: 1em;
+  font-weight: 800;
+}
+
+.contacts-image {
+  width: max(10vw, 200px);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.contacts {
+  margin: 1em auto;
+}
+
+.contacts-desc {
+  font-size: 1.2em;
+  font-weight: 400;
+  margin-left: 4em;
+  text-align: left;
+  color: #333;
+}
+
+.contacts-item {
+  font-size: 1.2em;
+  padding: 2.5em 0em;
+  margin: 0 4em;
+  border-top: 1px dashed rgba(0, 0, 0, 0.2);
+}
+
+.contacts-continue-btn {
+  width: fit-content;
+  margin: 0 2em 2em auto;
+}
+
+.contacts-item {
+  flex-wrap: wrap;
+}
+
+.contacts-item-inner {
+  margin: 1.5em;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  padding: 3em;
+  text-wrap: wrap;
+  width: max(10vw, 200px);
+  border-radius: 10px;
+
+  img {
+    margin-left: 0;
+  }
+
+  p {
+    padding: 0.4em 0 0 0;
+    margin: 0;
+  }
+}
+
+.contacts-name {
+  font-size: 2.5em !important;
+  font-weight: 800;
+}
+
+.contacts-role {
+  font-size: 1.5em !important;
+  color: black !important;
+  font-weight: 500;
+}

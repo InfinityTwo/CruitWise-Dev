@@ -1,0 +1,40 @@
+.dress-code-component {
+  * {
+    font-size: 2em;
+    font-family: "Nunito", sans-serif;
+  }
+}
+
+.dress-code-name {
+  margin: 1.5em;
+}
+
+.dress-code-svg {
+  width: 80px;
+  height: 80px;
+  fill: #ffbd59;
+  margin: 0 auto;
+}
+
+.dress-codes {
+  margin: 3em auto;
+}
+
+.dress-code-desc {
+  font-size: 1.2em;
+  font-weight: 400;
+  margin: 1em auto 0 auto;
+}
+
+.dress-code-item {
+  font-size: 0.5em;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  padding: 0.8em 2em;
+  margin: 0 1em;
+}
+
+.dress-continue-btn {
+  width: fit-content;
+  margin: 0 2em 2em auto;
+}

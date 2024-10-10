@@ -1,0 +1,66 @@
+.link-component {
+  * {
+    font-size: 0.75em;
+    font-family: "Nunito", sans-serif;
+  }
+}
+
+.link-header {
+  padding: 1.25em 1.5em;
+  font-size: 2em;
+  margin: 0;
+}
+
+.link-image {
+  width: 80px;
+  height: 80px;
+  fill: #ffbd59;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.dress-codes {
+  margin: 1em auto;
+}
+
+.link-desc {
+  font-size: 1.2em;
+  font-weight: 400;
+  margin: 2em auto 0 auto;
+  padding: 0 4em;
+  text-align: center;
+}
+
+.link-clickable {
+  font-size: 1.2em;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  padding: 0.8em 2em;
+  margin: 3em 1em 0 1em;
+  width: fit-content;
+  text-decoration: none;
+  color: black;
+  transition: 0.2s ease;
+  background-color: #fff;
+  box-shadow: none;
+
+  &:hover {
+    filter: contrast(0.9);
+  }
+}
+
+.link-continue-btn-wrapper {
+  min-height: 2.75em;
+}
+
+.link-continue-btn {
+  width: fit-content;
+  font-size: 1.5em !important;
+  margin: 0 2em 2em auto;
+  padding: 0.75em 2em !important;
+}
+
+.link-clickable-row {
+  flex-wrap: wrap;
+  margin: auto;
+}
