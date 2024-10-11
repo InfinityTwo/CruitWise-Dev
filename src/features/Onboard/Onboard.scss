@@ -3,7 +3,7 @@
   width: 100vw;
   margin-top: 200px;
   height: max-content;
-  background-color: #f9f9f9;
+  // background-color: #f9f9f9;
 }
 
 .onboarding-step {
@@ -11,4 +11,22 @@
   margin: 3em auto 0 auto;
   padding-left: 50px;
   font-family: "Nunito", sans-serif;
+}
+
+.onboard-background-dots-wrapper {
+  position: fixed;
+  background-color: transparent;
+  overflow: hidden;
+  * {
+    overflow: hidden;
+  }
+  background-color: #f9f9f9;
+}
+
+.onboard-background-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #e5e5e5;
+  margin: 20px;
 }

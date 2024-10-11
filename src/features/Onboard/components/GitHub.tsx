@@ -113,7 +113,7 @@ export const GitHub = ({ onFinish, organisationName, isOrganisation, repoName, r
   }, []);
 
   return (
-    <CardWrapper delayShow={1000}>
+    <CardWrapper delayShow={2000}>
       <div className="github-component">
         <div className="flex-between">
           <h1 className="github-text">GitHub</h1>

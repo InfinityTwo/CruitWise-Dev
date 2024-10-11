@@ -3,30 +3,30 @@ import { OnboardingTypes, OnboardPlanType } from "../types/OnboardPlan";
 export const onboardData: OnboardPlanType = {
   steps: [
     {
-      type: OnboardingTypes.GITHUB,
+      type: OnboardingTypes.GITHUB, // 1
       organisationName: process.env.REACT_APP_MOCK_GITHUB_ORG,
       isOrganisation: true,
     },
     {
-      type: OnboardingTypes.MS_TEAMS,
-    },
-    {
-      type: OnboardingTypes.VIDEO,
-      link: "https://www.youtube.com/watch?v=iHibnmosKkM",
-      description: "Let's watch this video to get a better understanding of Bosch",
-    },
-    {
-      type: OnboardingTypes.GITHUB,
+      type: OnboardingTypes.GITHUB, // 2
       repoName: process.env.REACT_APP_GITHUB_PERSONAL_REPO_NAME,
       repoOwner: process.env.REACT_APP_GITHUB_PERSONAL_REPO_OWNER,
       isOrganisation: false,
     },
     {
-      type: OnboardingTypes.DRESS_CODE,
+      type: OnboardingTypes.MS_TEAMS, // 3
+    },
+    {
+      type: OnboardingTypes.VIDEO, // 4
+      link: "https://www.youtube.com/watch?v=wBz_5SVnB-g",
+      description: "Let's watch this video to get a better understanding of cruitwise",
+    },
+    {
+      type: OnboardingTypes.DRESS_CODE, // 5
       itemList: ["Formal", "Business", "Business Casual"],
     },
     {
-      type: OnboardingTypes.VISIT_LINK,
+      type: OnboardingTypes.VISIT_LINK, // 6
       header: "Telegram",
       description: "Here's our work Telegram groups. Come join us!",
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png",
@@ -34,7 +34,7 @@ export const onboardData: OnboardPlanType = {
       linksName: ["Floor 14 Chat", "Software Engineers"],
     },
     {
-      type: OnboardingTypes.PEOPLE_OF_INTEREST,
+      type: OnboardingTypes.PEOPLE_OF_INTEREST, // 7
       people: [
         [
           [
@@ -81,12 +81,12 @@ export const onboardData: OnboardPlanType = {
       ],
     },
     {
-      type: OnboardingTypes.MARKDOWN,
+      type: OnboardingTypes.MARKDOWN, // 8
       header: "Here's how you can make your way to our office on your first day",
-      markdown: `## Our Address: 11 Bishan Street 21, Singapore 573943\n\n- When you enter, ask our friendly receptionist for your access card.\n\n- Once received, proceed to the **14th floor** and you'll find our office.\n\n- Your table is the one with your name on it. \n\n ## Welcome to Bosch!`,
+      markdown: `## Our Address: 11 Bishan Street 21, Singapore 573943\n\n- When you enter, ask our friendly receptionist for your access card.\n\n- Once received, proceed to the **14th floor** and you'll find our office.\n\n- Your table is the one with your name on it. \n\n ## Welcome to cruitwise!`,
     },
   ],
-  roleArray: ["Bosch", "Cloud Engineer"],
+  roleArray: ["cruitwise", "Cloud Engineer"],
   name: "Patrick",
-  onboardingProgressStage: 5,
+  onboardingProgressStage: 8,
 };

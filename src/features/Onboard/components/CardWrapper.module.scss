@@ -1,7 +1,7 @@
 $slide-in-duration: 0.5s;
-$slide-out-duration: 0.35s;
-$first-slide-in-duration: 0.35s;
-$last-slide-out-duration: 0.6s;
+$slide-out-duration: 0.5s;
+$first-slide-in-duration: 0.75s;
+$last-slide-out-duration: 0.5s;
 
 :export {
   firstSlideInDuration: $first-slide-in-duration;
@@ -34,8 +34,6 @@ $last-slide-out-duration: 0.6s;
 
   &:first-child {
     transition: 1s ease;
-    width: 60%;
-    margin-left: 20%;
   }
 
   &:first-child::before {
@@ -52,9 +50,41 @@ $last-slide-out-duration: 0.6s;
     z-index: 5;
     border-radius: 10px;
   }
+
 }
 
-.cardWrapperFirst {
+.cardWrapperWithBackground {
+  &:first-child {
+    width: 60%;
+    margin-left: 20%;
+  }
+}
+
+.cardWrapperNoSideBorder {
+  border-right: 0px solid black!important;
+}
+
+.cardWrapperNoBackground {
+  background-color: transparent;
+  border-left: 0px;
+  // border-right: 2px solid #ffbd59;
+  border-radius: 0px;
+  box-shadow: none;
+  padding: 0em;
+  // width: fit-content!important;
+  width: 100%; 
+  margin: 2em auto;
+
+  p {
+    padding: 0em!important;
+  }
+
+  &:first-child::before {
+    background-color: transparent;
+  }
+}
+
+.cardWrapperFirst.cardWrapperWithBackground {
   &:first-child::before {
     width: calc(100% + 20px);
     margin-left: -10px;
@@ -68,19 +98,45 @@ $last-slide-out-duration: 0.6s;
   animation: $first-slide-in-duration beginSlideCard ease both;
 }
 
-.cardWrapperBegin {
+.cardWrapperFirst.cardWrapperNoBackground {
+  &:first-child::before {
+    width: 100%;
+    margin-left: 0px;
+  }
+  &:first-child {
+    overflow: hidden;
+    * {
+      text-wrap: nowrap;
+    }
+  }
+  animation: $first-slide-in-duration beginSlideCardNoBackground ease both;
+}
+
+.cardWrapperBegin.cardWrapperWithBackground {
   &:first-child::before {
     animation: $slide-in-duration beginSlideBeforeElement ease both;
   }
 }
 
-.cardWrapperEnd {
+// .cardWrapperBegin.cardWrapperNoBackground {
+//   &:first-child::before {
+//     animation: $slide-in-duration beginSlideBeforeElementNoBackground ease both;
+//   }
+// }
+
+.cardWrapperEnd.cardWrapperWithBackground {
   &:first-child::before {
     animation: $slide-out-duration endSlideBeforeElement ease both;
   }
 }
 
-.cardWrapperLast {
+// .cardWrapperEnd.cardWrapperNoBackground {
+//   &:first-child::before {
+//     animation: $slide-out-duration endSlideBeforeElementNoBackground ease both;
+//   }
+// }
+
+.cardWrapperLast.cardWrapperWithBackground {
   &:first-child::before {
     width: calc(100% + 20px);
     margin-left: -10px;
@@ -92,6 +148,20 @@ $last-slide-out-duration: 0.6s;
     }
   }
   animation: $last-slide-out-duration endSlideCard ease both;
+}
+
+.cardWrapperLast.cardWrapperNoBackground, .cardWrapperEnd.cardWrapperNoBackground {
+  &:first-child::before {
+    width: 100%;
+    margin-left: 0px;
+  }
+  &:first-child {
+    overflow: hidden;
+    * {
+      text-wrap: nowrap;
+    }
+  }
+  animation: $last-slide-out-duration endSlideCardNoBackground ease both;
 }
 
 @keyframes beginSlideCard {
@@ -151,3 +221,70 @@ $last-slide-out-duration: 0.6s;
     margin-left: calc(0% - 10px);
   }
 }
+
+
+
+
+
+@keyframes beginSlideCardNoBackground {
+  0% {
+    width: 0%;
+    border-right: 2px solid #ffbd59;
+  }
+  50% {
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  75% {
+    width: 100%;
+    border-right: 2px solid #ffbd59;
+  }
+  
+  100% {
+    width: 100%;
+    border-right: 0px solid #ffbd59;
+  }
+}
+
+// @keyframes beginSlideBeforeElementNoBackground {
+//   0% {
+//     width: 100%;
+//     margin-left: 0px;
+//   }
+//   100% {
+//     width: 0%;
+//     margin-left: 100%;
+//   }
+// }
+
+@keyframes endSlideCardNoBackground {
+  0% {
+    width: 100%;
+    border-right: 0px solid #ffbd59;
+  }
+  25% {
+    border-right: 2px solid #ffbd59;
+  }
+  50% {
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  100% {
+    width: 0%;
+    border-right: 2px solid #ffbd59;
+  }
+}
+
+// @keyframes endSlideBeforeElementNoBackground {
+//   0% {
+//     width: 0%;
+//     margin-left: 0%;
+//   }
+//   100% {
+//     width: 100%;
+//     margin-left: 0%;
+//   }
+// }

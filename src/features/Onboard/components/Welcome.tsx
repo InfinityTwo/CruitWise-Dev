@@ -23,28 +23,28 @@ interface WelcomePartProps {
 
 const vowels = ["a", "e", "i", "o", "u"];
 
-const WelcomePart = ({
-  blackText,
-  coloredText,
-  buttonText = "Next",
-  onClick,
-  isLastPart = false,
-}: WelcomePartProps) => {
+const WelcomePart = ({ blackText, coloredText, buttonText = "Next", onClick }: WelcomePartProps) => {
   const transitionPart = useCallback(cardTransition(), []);
 
   const handleClick = () => {
-    transitionPart(onClick, isLastPart);
+    transitionPart(onClick, true, true);
   };
 
   return (
-    <div className="welcome-part">
-      <p className="welcome-part-text">
-        {blackText}
-        <span>{coloredText}</span>
-      </p>
-      <button className="welcome-part-button" onClick={handleClick}>
-        <p>{buttonText}</p>
-      </button>
+    <div className="welcome-part-wrapper">
+      <div className="welcome-part">
+        <CardWrapper hasBackground={false} delayShow={250}>
+          <p className="welcome-part-text">
+            {blackText}
+            <span>{coloredText}</span>
+          </p>
+        </CardWrapper>
+        <CardWrapper hasBackground={false} noBackgroundHasBorder={false} delayShow={250}>
+          <button className="welcome-part-button" onClick={handleClick}>
+            <p>{buttonText}</p>
+          </button>
+        </CardWrapper>
+      </div>
     </div>
   );
 };
@@ -53,7 +53,7 @@ export const Welcome = ({ company, personName, role, onFinish, stepsCounter }: W
   const [welcomeStage, setWelcomeStage] = useState(0);
 
   return (
-    <CardWrapper>
+    <div>
       <div className="welcome-component">
         {welcomeStage === 0 && (
           <WelcomePart
@@ -65,8 +65,8 @@ export const Welcome = ({ company, personName, role, onFinish, stepsCounter }: W
         )}
         {welcomeStage === 1 && (
           <WelcomePart
-            blackText="Welcome to "
-            coloredText={company}
+            blackText={company === "cruitwise" ? "Welcome to cruit" : "Welcome to "}
+            coloredText={company === "cruitwise" ? "wise" : company}
             buttonText="Thank You!"
             onClick={() => setWelcomeStage(2)}
           />
@@ -87,10 +87,9 @@ export const Welcome = ({ company, personName, role, onFinish, stepsCounter }: W
             coloredText={"first day"}
             buttonText="Let's Go!"
             onClick={() => onFinish()}
-            isLastPart={true}
           />
         )}
       </div>
-    </CardWrapper>
+    </div>
   );
 };

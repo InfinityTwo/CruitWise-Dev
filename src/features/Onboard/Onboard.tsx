@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { ActiveTypes, Header } from "../../components/Header/Header";
+import { useWindowSize } from "../../hooks/hooks";
 import { onboardData } from "../../mocks/mockOnboardData";
 import { store } from "../../store/store";
 import { OnboardingTypes, OnboardPlanType } from "../../types/OnboardPlan";
@@ -18,6 +19,33 @@ import { ProgressBar } from "./components/ProgressBar";
 import { Video } from "./components/Video";
 import { Welcome } from "./components/Welcome";
 
+const OnboardBackground = () => {
+  const [width, height] = useWindowSize();
+
+  const eachDot = () => {
+    return <div className="onboard-background-dot"></div>;
+  };
+  const rowDots = () => {
+    const ROW_COUNT = Math.ceil(width / 45);
+    const dots: JSX.Element[] = [];
+    for (let i = 0; i < ROW_COUNT; i++) {
+      dots.push(eachDot());
+    }
+    return <div className="onboard-background-dot-row flex-row">{dots}</div>;
+  };
+
+  const colDots = () => {
+    const COL_COUNT = Math.ceil(height / 45);
+    const dots: JSX.Element[] = [];
+    for (let i = 0; i < COL_COUNT; i++) {
+      dots.push(rowDots());
+    }
+    return <div className="onboard-background-dot-col flex-col">{dots}</div>;
+  };
+
+  return <div className="onboard-background-dots-wrapper">{colDots()}</div>;
+};
+
 export const Onboard = () => {
   // Page States
   const [onboardPlan, setOnboardPlan] = useState<OnboardPlanType>({
@@ -26,6 +54,10 @@ export const Onboard = () => {
     name: "",
     onboardingProgressStage: 0,
   });
+  const [isWelcomeComplete, setIsWelcomeComplete] = useState(false);
+  const [isWelcomeCompleteDelayed, setIsWelcomeCompleteDelayed] = useState(false);
+  // Refresh the cards in case it is back to back
+  const [isAllCardsHiddenTemporarily, setIsAllCardsHiddenTemporarily] = useState(false);
   const [params] = useSearchParams();
 
   const incrementOnboardingStage = () => {
@@ -33,13 +65,15 @@ export const Onboard = () => {
       ...prev,
       onboardingProgressStage: prev.onboardingProgressStage + 1,
     }));
+    setIsAllCardsHiddenTemporarily(true);
   };
 
   const shouldDisplayComponent = (type: OnboardingTypes) => {
     return (
       onboardPlan.onboardingProgressStage >= 1 &&
       onboardPlan.onboardingProgressStage <= onboardPlan.steps.length &&
-      onboardPlan.steps[onboardPlan.onboardingProgressStage - 1].type === type
+      onboardPlan.steps[onboardPlan.onboardingProgressStage - 1].type === type &&
+      !isAllCardsHiddenTemporarily
     );
   };
 
@@ -60,6 +94,10 @@ export const Onboard = () => {
 
       const onboardPlan: OnboardPlanType = res!.data;
       setOnboardPlan(onboardPlan);
+      if (onboardPlan.onboardingProgressStage !== 0) {
+        setIsWelcomeComplete(true);
+        setIsWelcomeCompleteDelayed(true);
+      }
     }
   };
 
@@ -67,33 +105,48 @@ export const Onboard = () => {
     getOnboardPlan();
   }, []);
 
+  useEffect(() => {
+    if (isAllCardsHiddenTemporarily) {
+      setIsAllCardsHiddenTemporarily(false);
+    }
+  }, [isAllCardsHiddenTemporarily]);
+
   return (
     <div className="body">
+      <OnboardBackground />
       <div className="main-view-container">
-        <Header linkArray={onboardPlan.roleArray} activeTab={ActiveTypes.ONBOARD} />
+        {onboardPlan.onboardingProgressStage >= 1 && isWelcomeComplete && (
+          <Header linkArray={onboardPlan.roleArray} activeTab={ActiveTypes.ONBOARD} toSlideIn={true} />
+        )}
+
+        {onboardPlan.onboardingProgressStage === 0 && (
+          <Welcome
+            company={onboardPlan.roleArray[0]}
+            role={onboardPlan.roleArray[1]}
+            personName={onboardPlan.name}
+            onFinish={() => {
+              incrementOnboardingStage();
+              setTimeout(() => setIsWelcomeComplete(true), 500);
+              setTimeout(() => setIsWelcomeCompleteDelayed(true), 1250);
+            }}
+            stepsCounter={onboardPlan.steps.length}
+          />
+        )}
 
         <div className="main-view-container-body">
-          {onboardPlan.onboardingProgressStage >= 1 && (
-            <ProgressBar
-              onFinish={() => {}}
-              progress={(onboardPlan.onboardingProgressStage - 1) / onboardPlan.steps.length}
-            />
+          {isWelcomeCompleteDelayed && onboardPlan.onboardingProgressStage >= 1 && (
+            <ProgressBar progress={(onboardPlan.onboardingProgressStage - 1) / onboardPlan.steps.length} />
           )}
-          {onboardPlan.onboardingProgressStage >= 1 && (
-            <h1 className="onboarding-step">Step {onboardPlan.onboardingProgressStage}</h1>
+
+          {isWelcomeCompleteDelayed && onboardPlan.onboardingProgressStage >= 1 && (
+            <h1 className="onboarding-step">
+              {onboardPlan.onboardingProgressStage <= onboardPlan.steps.length
+                ? "Step " + String(onboardPlan.onboardingProgressStage)
+                : ""}
+            </h1>
           )}
 
           <div>
-            {onboardPlan.onboardingProgressStage === 0 && (
-              <Welcome
-                company={onboardPlan.roleArray[0]}
-                role={onboardPlan.roleArray[1]}
-                personName={onboardPlan.name}
-                onFinish={() => incrementOnboardingStage()}
-                stepsCounter={onboardPlan.steps.length}
-              />
-            )}
-
             {shouldDisplayComponent(OnboardingTypes.GITHUB) && (
               <GitHub
                 onFinish={() => incrementOnboardingStage()}

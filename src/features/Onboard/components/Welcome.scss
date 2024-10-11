@@ -1,17 +1,37 @@
-.welcome-part {
+.welcome-component {
+  min-height: 30vh;
+  height: 100vh;
+}
+
+.welcome-part-wrapper {
+  margin: auto 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
+}
+
+.welcome-part {
+  background-color: rgba(255, 255, 255, 0.825);
   text-align: center;
-  padding: 2.5em 0;
-  background-color: white;
+  padding: 10vh 0;
+  min-height: 25vh;
+  margin: auto 20vw;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   p {
     padding-left: 1em;
     padding-right: 1em;
+  }
+
+  div {
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
   }
 }
 
@@ -19,10 +39,12 @@
   margin: 0;
   color: black !important;
   font-size: 2.5em;
-  font-weight: bold;
+  font-weight: 600;
+  font-family: 'Nunito', sans-serif;
 
   span {
     color: #ffbd59;
+    font-weight: 800;
   }
 }
 
@@ -31,7 +53,7 @@
   background-color: #eee;
   border: none;
   border-left: 10px solid #ffbd59;
-  margin: 5em auto 0em auto;
+  margin: 0em auto 0em auto;
   padding: 1em 3em;
   border-radius: 10px;
   min-width: 5em;

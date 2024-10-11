@@ -1,14 +1,14 @@
 import "./ProgressBar.scss";
 
-import { useEffect, useState } from "react";
+import React from "react";
 
 interface ProgressBarProps {
-  onFinish: () => void;
   progress: number;
+  delayShow?: number;
 }
 
-export const ProgressBar = ({ onFinish, progress = 0.0 }: ProgressBarProps) => {
-  const [progressPercentage, setProgressPercentage] = useState(progress); // 0.00 -> 1.00
+export const ProgressBar = ({ progress = 0.0 }: ProgressBarProps) => {
+  // const [progressPercentage, setProgressPercentage] = useState(progress); // 0.00 -> 1.00
 
   return (
     <div className="progress-bar-wrapper">

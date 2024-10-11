@@ -58,7 +58,7 @@ p {
   flex-direction: row;
 }
 
-.flex-column {
+.flex-column, .flex-col {
   display: flex;
   flex-direction: column;
 }

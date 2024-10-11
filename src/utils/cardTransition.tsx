@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import variables from "../features/Onboard/components/CardWrapper.module.scss";
 import {
   setEndTransition,
+  setFirstTransition,
   setLastTransition,
   setStartTransition,
 } from "../features/Onboard/components/cardWrapperSlice";
@@ -11,9 +12,16 @@ import { useAppDispatch } from "../hooks/hooks";
 export const cardTransition = () => {
   const dispatch = useAppDispatch();
 
-  const transitionPart = useCallback((then: () => void, isLast?: boolean) => {
+  const transitionPart = useCallback((then: () => void, isLast?: boolean, isLastButNoTimeout?: boolean) => {
+    if (isLastButNoTimeout === undefined) {
+      isLastButNoTimeout = false;
+    }
     const timeoutEnd = () => {
-      dispatch(setStartTransition());
+      if (isLast) {
+        dispatch(setFirstTransition());
+      } else {
+        dispatch(setStartTransition());
+      }
       then();
     };
 
@@ -21,7 +29,7 @@ export const cardTransition = () => {
 
     setTimeout(
       () => {
-        if (isLast) {
+        if (isLast && !isLastButNoTimeout) {
           dispatch(setLastTransition());
           setTimeout(
             () => {

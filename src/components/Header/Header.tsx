@@ -16,9 +16,15 @@ export enum ActiveTypes {
   SETTINGS,
 }
 
-export const Header = ({ linkArray, activeTab }: { linkArray: string[]; activeTab: ActiveTypes }) => {
+interface HeaderProps {
+  linkArray: string[];
+  activeTab: ActiveTypes;
+  toSlideIn?: boolean;
+}
+
+export const Header = ({ linkArray, activeTab, toSlideIn = false }: HeaderProps) => {
   return (
-    <div className="nav-bar">
+    <div className={"nav-bar" + (toSlideIn ? " nav-bar-slide-in" : "")}>
       <div className="nav-bar-logo">
         cruit<span>wise</span>
       </div>
