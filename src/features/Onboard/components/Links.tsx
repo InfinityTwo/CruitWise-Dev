@@ -41,7 +41,7 @@ export const Links = ({ onFinish, header, description, imageName, links, linksNa
 
     fetchImage();
 
-    const newIsClicked = [];
+    const newIsClicked: boolean[] = [];
     for (let i = 0; i < links.length; i++) {
       newIsClicked.push(false);
     }
